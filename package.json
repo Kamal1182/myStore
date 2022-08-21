@@ -9,6 +9,7 @@
     "watch:server": "nodemon src/server/index.js",
     "watch": "run-p watch:*",
     "ng-watch": "ng build --watch --configuration development",
+    "seed-db": "node src/server/data/seed-db.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
