@@ -2,7 +2,7 @@ const express  = require('express');
 // const checkJwt = require('express-jwt');
 var { expressjwt: jwt } = require("express-jwt");
 const router   = express.Router();
-const contactsRoute = require('./contactsRoute');
+const productsRoute = require('./productsRoute');
 const userRoute = require('./userRoute');
 const authenticateRoute = require('./authenticateRoute');
 //const db       = require('../dbConnection');
@@ -20,7 +20,7 @@ module.exports = () => {
     }
   })
 
-  router.use('/contacts', contactsRoute());
+  router.use('/products', productsRoute());
 
   router.use('/users', userRoute());
 

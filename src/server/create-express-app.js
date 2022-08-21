@@ -9,7 +9,7 @@ function createExpressApp(database) {
 
   app.use(bodyParser.json({limit: '50mb'}));
   app.use(express.static(path.join(__dirname, 'public')));
-  app.use('/profiles', express.static(path.join(__dirname, 'profiles')));
+  // app.use('/profiles', express.static(path.join(__dirname, 'profiles')));
 
   app.use('/api', apiRouter());
 

@@ -11,7 +11,7 @@ module.exports = {
         if(err) {
           console.log('Database error: ' + err);
         } else {
-            _db = cluster.db('contacts-app-vm');
+            _db = cluster.db('myStore');
             console.log('Successful database connection');
             return callback( err );
         }

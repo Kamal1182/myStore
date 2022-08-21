@@ -11,8 +11,8 @@ const sanitizeHtml = require('sanitize-html');
 
 module.exports = () => {
   router.get('/', (req, res) => {
-      const contactsCollection = database.collection('contacts');
-      contactsCollection.find({}).toArray((err, docs) => {
+      const productsCollection = database.collection('products');
+      productsCollection.find({}).toArray((err, docs) => {
         return res.status(200).json(docs);
       });
     });
@@ -20,7 +20,7 @@ module.exports = () => {
   router.post('/', addContactValidationRules(),validate, (req, res, next) => {
 
     if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin == 'false' ) {
-      return res.status(401).json({ error: 'Adding new contact is allowed for admins only!' });
+      return res.status(401).json({ error: 'Adding new product is allowed for admins only!' });
     }
 
     const user = req.body;
@@ -39,12 +39,12 @@ module.exports = () => {
         req.files.photoUrl.mv('profiles');
       } */
 
-    const contactsCollection = database.collection('contacts');
+    const productsCollection = database.collection('products');
 
     req.body.photoUrl.data = 'data:image/jpeg;base64,' + req.body.photoUrl.data;
-    contactsCollection.insertOne(user, (err, r) => {
+    productsCollection.insertOne(user, (err, r) => {
       if(err) {
-        return res.status(500).json({ error: 'Error inserting new contact' });
+        return res.status(500).json({ error: 'Error inserting new product' });
       }
 
       const newRecord = r.ops[0];
@@ -75,12 +75,12 @@ module.exports = () => {
         req.files.photoUrl.mv('profiles');
       } */
 
-    const contactsCollection = database.collection('contacts');
+    const productsCollection = database.collection('products');
 
     req.body.photoUrl.data = 'data:image/jpeg;base64,' + req.body.photoUrl.data;
-    /* contactsCollection.findOneAndUpdate({ "_id" : ObjectId(req.params.id) }, { $set: user }, { returnNewDocument: true }, (err, r) => {
+    /* productsCollection.findOneAndUpdate({ "_id" : ObjectId(req.params.id) }, { $set: user }, { returnNewDocument: true }, (err, r) => {
       if(err) {
-        return res.status(500).json({ error: 'Error updating new contact' });
+        return res.status(500).json({ error: 'Error updating new product' });
       }
 
       const updatedRecord = r.ops[0];
@@ -89,14 +89,14 @@ module.exports = () => {
       return res.status(201).json(updatedRecord);
     }); */
 
-    contactsCollection.findOneAndUpdate({ "_id" : ObjectId(req.params.id) }, { $set: user }, { returnNewDocument: true })
+    productsCollection.findOneAndUpdate({ "_id" : ObjectId(req.params.id) }, { $set: user }, { returnNewDocument: true })
       .then(updatedDocument => {
         if(updatedDocument) {
           console.log(`Successfully updated document: ${updatedDocument}.`);
           return res.status(201).json(updatedDocument);
         } else {
           console.log("No document matches the provided query.");
-          return res.status(500).json({ error: 'Error updating new contact' });
+          return res.status(500).json({ error: 'Error updating new product' });
         }
       })
   })
@@ -107,20 +107,20 @@ module.exports = () => {
       return res.status(401).json({ error: 'Deleting a user is allowed for admins only!' });
     }
 
-    const contactsCollection = database.collection('contacts');
-    contactsCollection.findOneAndDelete({ "_id" : ObjectId(req.params.id) })
-      .then(deletedContact => {
-        if(deletedContact.value) {
+    const productsCollection = database.collection('products');
+    productsCollection.findOneAndDelete({ "_id" : ObjectId(req.params.id) })
+      .then(deletedProduct => {
+        if(deletedProduct.value) {
           console.log(`Successfully deleted document that had the form: `);
-          console.log(deletedContact);
-          return res.status(201).json(deletedContact);
-        } else if(deletedContact.value == null) {
+          console.log(deletedProduct);
+          return res.status(201).json(deletedProduct);
+        } else if(deletedProduct.value == null) {
           console.log("No document matches the provided query.");
-          console.log(deletedContact);
+          console.log(deletedProduct);
           return res.status(204).json({ error: 'No data found!' });
         }
       })
-      .catch(err => console.error(`Failed to find and delete document: ${err}`))
+      .catch(err => console.error(`Failed to find and delete product: ${err}`))
     /* find({}).toArray((err, docs) => {
       return res.json(docs);
     }); */
