@@ -1,0 +1,39 @@
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+      <!-- <p>Menu</p> -->
+      <button color="primary" mat-button routerLink="/products">Products</button>
+      <button color="primary" mat-button routerLink="/cart">Cart</button>
+    </mat-drawer>
+    <div class="sidenav-content">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+  
+          <span>My Store</span>
+          <span class="spacer"></span>
+          <mat-icon>shopping_cart</mat-icon>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu>
+            <button mat-menu-item *ngIf="!loggedIn" [routerLink]="'login'">
+              <mat-icon>login</mat-icon>
+              <span>Login</span>
+            </button>
+            <button mat-menu-item [disabled]="isUnchanged">
+              <mat-icon>comment</mat-icon>
+              <span>Comment</span>
+            </button>
+            <button mat-menu-item *ngIf="loggedIn" (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>logout</span>
+            </button>
+          </mat-menu>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+
+    <router-outlet></router-outlet>
+  </mat-drawer-container>

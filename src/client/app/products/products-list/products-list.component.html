@@ -1,0 +1,17 @@
+<div class="loader-container" *ngIf="api.isLoading | async">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div layout="row" layout-align="center center">
+  <div>
+    <mat-form-field class="searchProduct">
+      <mat-label>Search Product</mat-label>
+      <input matInput name="username" type="text" [(ngModel)]="seachTerm">
+    </mat-form-field>
+  </div>
+</div>
+
+<mat-grid-list [cols]="breakpoint" rowHeight="1:2" (window:resize)="onResize($event)">
+  <mat-grid-tile *ngFor="let product of products  | searchProduct: seachTerm">
+    <app-product [product]="product"></app-product>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -23,7 +23,7 @@ module.exports = () => {
       return res.status(401).json({ error: 'Adding new product is allowed for admins only!' });
     }
 
-    const user = req.body;
+    const product = req.body;
 
     // Write the image to profiles folder
     var buffer = new Buffer(req.body.photoUrl.data, 'base64');
@@ -42,14 +42,14 @@ module.exports = () => {
     const productsCollection = database.collection('products');
 
     req.body.photoUrl.data = 'data:image/jpeg;base64,' + req.body.photoUrl.data;
-    productsCollection.insertOne(user, (err, r) => {
+    productsCollection.insertOne(product, (err, r) => {
       if(err) {
         return res.status(500).json({ error: 'Error inserting new product' });
       }
 
-      const newRecord = r.ops[0];
+      const newProduct = r.ops[0];
 
-      return res.status(201).json(newRecord);
+      return res.status(201).json(newProduct);
     });
   })
 
