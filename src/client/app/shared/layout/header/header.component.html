@@ -13,7 +13,9 @@
   
           <span>My Store</span>
           <span class="spacer"></span>
-          <mat-icon>shopping_cart</mat-icon>
+          <a routerLink="/cart" mat-icon-button>
+            <mat-icon>shopping_cart</mat-icon>
+          </a>
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>
           </button>

@@ -29,8 +29,6 @@ export class ProductsListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //this.contacts = this.api.get('contacts').unsubscribe;
-
     this.api.get('products')
       .subscribe(data => {
         this.products = data;

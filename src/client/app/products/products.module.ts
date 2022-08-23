@@ -26,6 +26,9 @@ import { SearchProductsPipe } from '../shared/pipe/products/search-products.pipe
 
     FormsModule,
     ReactiveFormsModule
+  ],
+  exports: [
+    ProductComponent
   ]
 })
 export class ProductsModule { }

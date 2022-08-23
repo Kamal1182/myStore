@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar [ngStyle]="{ 'background-image': 'url(' + product.url + ')', 'background-size': 'cover', 'display':'inline-block' }"></div>
+    <mat-card-title>
+      <a class="header">{{product.name}}</a>
+    </mat-card-title>
+    <mat-card-title>{{product.price}} $ </mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="product.url">
+  <mat-card-actions>
+    <mat-select placeholder="Quantity" [(value)]="selectedQ">
+      <mat-option *ngFor="let q of Quantity" [value]="q">
+        {{q}}
+      </mat-option>
+    </mat-select>
+    <div class="flex-spacer"></div>
+    <button mat-raised-button color="primary" (click)="openProductInCart(selectedQ)">Add to cart</button>
+  </mat-card-actions>
+</mat-card>

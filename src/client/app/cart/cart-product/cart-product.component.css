@@ -1,0 +1,23 @@
+.mat-card {
+  /* padding: 16px; */
+  /* max-width: 300px; */
+  margin: 1rem;
+  /* width: calc(100% - 70px);
+  height: calc(100% - 70px); */
+}
+
+.mat-select {
+  width: 25%;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: flex-center;
+  align-items: center;
+}
+
+.mat-card-actions .button{
+}    
+.mat-card-actions .flex-spacer {
+  width: 20%;
+}
