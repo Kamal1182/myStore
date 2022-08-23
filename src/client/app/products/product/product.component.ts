@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Product } from '../../shared/model/product.model';
-// import { EditContactModalComponent } from '../edit-contact-modal/edit-contact-modal.component';
-// import { DeleteContactModalComponent } from '../delete-contact-modal/delete-contact-modal.component';
-
+import { CartService } from '../../shared/services/cart/cart.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -15,27 +12,18 @@ export class ProductComponent implements OnInit {
 
   @HostBinding('class') columnClass = 'four wide column';
 
-  constructor(private dialog: MatDialog) {}
+  Quantity: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 10]
+
+  selectedQ = 1
+
+  constructor(private Cart: CartService) {}
 
   ngOnInit(): void {
   }
 
-  openEditDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '640px';
-    dialogConfig.data = this.product;
-
-    // this.dialog.open(EditContactModalComponent, dialogConfig);
-  }
-
-  openDeleteDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '640px';
-    dialogConfig.data = this.product;
-
-    // this.dialog.open(DeleteContactModalComponent, dialogConfig);
+  openProductInCart(selectedQ: number) {
+    this.Cart.addProduct(this.product, selectedQ);
+    let cart = this.Cart.getAllProducts();
   }
 
 }

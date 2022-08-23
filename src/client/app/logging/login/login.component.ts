@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
             this.passwordServerError = data.error.password;
         } else {
             this.auth.setToken(data.token);
-            this.router.navigate(['contacts']);
+            this.router.navigate(['products']);
        }
       });
   }

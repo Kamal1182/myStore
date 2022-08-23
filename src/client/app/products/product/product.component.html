@@ -1,23 +1,19 @@
 <mat-card>
   <mat-card-header>
-    <div mat-card-avatar *ngIf="product.url" [ngStyle]="{ 'background-image': 'url(' + product.url + ')', 'background-size': 'cover' }"></div>
-        <mat-card-title>
-      <div *ngIf="product.name; then name else firstNameLastName"></div>
-      <ng-template #name> <a class="header">{{product.name}}</a> </ng-template>
-      <ng-template #firstNameLastName> <a class="header">{{product.name}}</a> </ng-template>
+    <div mat-card-avatar [ngStyle]="{ 'background-image': 'url(' + product.url + ')', 'background-size': 'cover', 'display':'inline-block' }"></div>
+    <mat-card-title>
+      <a class="header">{{product.name}}</a>
     </mat-card-title>
-    <mat-card-subtitle>mkamal11@gmail.com</mat-card-subtitle>
+    <mat-card-title>{{product.price}} $ </mat-card-title>
   </mat-card-header>
-   <img mat-card-image [src]="product.url">
-  <mat-card-content>
-    <ng-template #phoneDataOneValue> {{ product.price }} </ng-template>
-    <br>
-    <p>Description: {{product.description}}</p>
-  </mat-card-content>
+  <img mat-card-image [src]="product.url">
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="openEditDialog()">Edit</button>
-    <button mat-raised-button color="warn" (click)="openDeleteDialog()">Delete</button>
+    <mat-select placeholder="Quantity" [(value)]="selectedQ">
+      <mat-option *ngFor="let q of Quantity" [value]="q">
+        {{q}}
+      </mat-option>
+    </mat-select>
     <div class="flex-spacer"></div>
-    <button mat-icon-button><mat-icon>publish</mat-icon></button>
+    <button mat-raised-button color="primary" (click)="openProductInCart(selectedQ)">Add to cart</button>
   </mat-card-actions>
 </mat-card>
