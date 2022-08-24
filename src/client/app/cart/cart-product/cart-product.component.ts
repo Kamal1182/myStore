@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 import { Product } from '../../shared/model/product.model';
 import { CartService } from '../../shared/services/cart/cart.service';
 
@@ -11,6 +12,10 @@ export class CartProductComponent implements OnInit {
 
   @Input() product!: Product;
 
+  @Input() orderedQuantity!: number;
+
+  @Output() removeProductEvent = new EventEmitter<Product>();
+
   @HostBinding('class') columnClass = 'four wide column';
 
   Quantity: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 10]
@@ -20,11 +25,15 @@ export class CartProductComponent implements OnInit {
   constructor(private Cart: CartService) {}
 
   ngOnInit(): void {
+    this.selectedQ = this.orderedQuantity;
   }
 
-  openProductInCart(selectedQ: number) {
+  addProductToCart(selectedQ: number) {
     this.Cart.addProduct(this.product, selectedQ);
-    let cart = this.Cart.getAllProducts();
   }
 
+  removeProductFromCart(P: Product) {
+    this.Cart.remove(P);
+    this.removeProductEvent.emit(P)
+  }
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -22,10 +22,13 @@ import { HeaderTokenInterceptor } from './shared/interceptor/header-token.interc
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/layout/header/header.component';
 
+// shared
+import { SharedModule } from './shared/shared.module';
+
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,9 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 
     // Material
     AngularMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
+    SharedModule
   ],
   providers: [
               ApiService, 

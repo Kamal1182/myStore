@@ -10,13 +10,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 
 // Search Pipe
-import { SearchProductsPipe } from '../shared/pipe/products/search-products.pipe';
+// import { SearchProductsPipe } from '../shared/pipe/products/search-products.pipe';
 
+// shared
+import { SharedModule } from '../shared/shared.module';
+import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 @NgModule({
   declarations: [
     CartListComponent,
-    SearchProductsPipe,
-    CartProductComponent
+    // SearchProductsPipe,
+    CartProductComponent,
+    OrderConfirmComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,9 @@ import { SearchProductsPipe } from '../shared/pipe/products/search-products.pipe
 
     AngularMaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    SharedModule
   ]
 })
 export class CartModule { }

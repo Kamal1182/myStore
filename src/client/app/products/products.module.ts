@@ -10,13 +10,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 
 // Search Pipe
-import { SearchProductsPipe } from '../shared/pipe/products/search-products.pipe';
+// import { SearchProductsPipe } from '../shared/pipe/products/search-products.pipe';
 
+// shared
+import { SharedModule } from '../shared/shared.module';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 @NgModule({
   declarations: [
     ProductComponent,
     ProductsListComponent,
-    SearchProductsPipe
+    ProductDetailsComponent,
+    // SearchProductsPipe
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,8 @@ import { SearchProductsPipe } from '../shared/pipe/products/search-products.pipe
     AngularMaterialModule,
 
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [
     ProductComponent

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from '../../shared/model/product.model';
 import { CartService } from '../../shared/services/cart/cart.service';
 @Component({
@@ -16,14 +17,17 @@ export class ProductComponent implements OnInit {
 
   selectedQ = 1
 
-  constructor(private Cart: CartService) {}
+  constructor(private Cart: CartService, private router: Router) {}
 
   ngOnInit(): void {
   }
 
   openProductInCart(selectedQ: number) {
     this.Cart.addProduct(this.product, selectedQ);
-    let cart = this.Cart.getAllProducts();
+  }
+
+  showDetails(product: Product) {
+    this.router.navigateByUrl('products/details', {state: {product}});
   }
 
 }

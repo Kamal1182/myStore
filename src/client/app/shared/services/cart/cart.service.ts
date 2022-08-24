@@ -27,7 +27,36 @@ export class CartService {
     }
   }
 
-  getAllProducts() {
+  getAllOrder():{P: Product; Q: number}[] {
     return this.cart;
   }
+
+  getAllProducts(): Product[] {
+    let P: Product[] = [];
+    this.cart.forEach((item) => {
+      P.push(item.P);
+    }) 
+    return P;
+  }
+
+  remove(P: Product): void {
+    this.cart = this.cart.filter((item) => item.P.name !== P.name)
+  }
+
+  getTotalPrice(): number {
+    let result: number = 0
+    this.cart.forEach((item) => {
+      result += item.P.price * item.Q;
+    })
+    return result;
+  }
+
+  getTotalitems(): number {
+    let result: number = 0;
+    this.cart.forEach((item) => {
+      result += item.Q;
+    })
+    return result;
+  }
+
 }

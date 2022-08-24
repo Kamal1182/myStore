@@ -1,13 +1,12 @@
 <section>
-  <div class="example-label">
-    <button color="primary" mat-raised-button routerLink="/products">Products</button>
-    <mat-form-field class="searchProduct">
-      <mat-label>Search Product</mat-label>
-      <input matInput name="username" type="text" [(ngModel)]="seachTerm">
-    </mat-form-field>
-  </div>
+  <button color="primary" mat-raised-button routerLink="/products">Products</button>
 </section>
-<mat-divider></mat-divider>
+<!-- <mat-divider></mat-divider>
+  <p *ngIf="order.length !== 0">You have ordered {{totalItems}} item with a total of {{totalPrice}}$</p>
+<mat-divider></mat-divider> -->
+<div *ngIf="order.length === 0">
+  <p>Cart is Empty</p>
+</div>
 <div class="loader-container" *ngIf="api.isLoading | async">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
@@ -16,10 +15,46 @@
     
   </div>
 </div>
-<mat-divider></mat-divider>
 
-<mat-grid-list [cols]="breakpoint" rowHeight="1:2" (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let product of products  | searchProduct: seachTerm">
-    <app-cart-product [product]="product"></app-cart-product>
-  </mat-grid-tile>
-</mat-grid-list>
+
+<div *ngIf="order.length !== 0">
+  <mat-grid-list [cols]="breakpoint" rowHeight="1:2" (window:resize)="onResize($event)">
+    <mat-grid-tile *ngFor="let item of order">
+      <app-cart-product [product]="item.P" [orderedQuantity]="item.Q" (removeProductEvent)="removeProduct($event)"></app-cart-product>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <form [formGroup]="orderDetails" (ngSubmit)="onSubmit()">
+    <mat-grid-list #gridList [cols]="breakpoint" rowHeight="85px" (window:resize)="onResize($event)">
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput #fullName placeholder="Full Name" type="text" formControlName="fullName">
+            <mat-error *ngIf="orderDetails.controls['fullName'].errors?.['required']">Enter your full name</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>  
+        
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput #address placeholder="Address" type="text" formControlName="address">
+            <mat-error *ngIf="orderDetails.controls['address'].errors?.['required']">Enter your address</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Credit Card</mat-label>
+          <input matInput #creditCard formControlName="creditCard" placeholder="creditCard" required>
+          <mat-icon matSuffix><i class="fa fa-credit-card" aria-hidden="true"></i></mat-icon>
+          <mat-error *ngIf="orderDetails.controls['creditCard'].errors?.['required']">Enter your credit card number!</mat-error>
+          <mat-error *ngIf="orderDetails.controls['creditCard'].errors?.['maxlength']">not more than 14 digits</mat-error>
+          <mat-error *ngIf="orderDetails.controls['creditCard'].errors?.['minlength']">Not less than 14 digits</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+    
+    <button mat-raised-button color="primary" type="submit" [disabled]="orderDetails.invalid">Confirm</button>
+
+  </form> 
+</div>
