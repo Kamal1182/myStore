@@ -10,7 +10,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Development server
 
 Run `npm install`. 
-Run `npm run watch` for a dev server. Navigate to `http://localhost:4200/`. 
+Run `npm run watch` which runs both commands `ng serve` anf `nodemon src/server/index.js`
+Navigate to `http://localhost:4200/`.
+the backend is running on `http://localhost:3000/`
 Then login using username: admin and password: 87654321 to login
 
 ## Code scaffolding
