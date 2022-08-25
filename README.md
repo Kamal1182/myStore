@@ -16,10 +16,6 @@ Navigate to `http://localhost:4200/`for frontend.
 the backend is running on `http://localhost:3000/`
 Then login using username: admin and password: 87654321 to login
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
