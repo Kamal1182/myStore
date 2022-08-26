@@ -1,11 +1,21 @@
 # MyStore
 
-This project is a MEAN Stack web app uses a Mongo Atlas Database connection for online real data.
+This project is a MEAN Stack web app uses a Mongo Atlas Database connection and Express js for online real data.
 
 The interface built using angular material
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.1.
+The project do all CRUD operations in frontend data
 
+It gets (Read) all products from the database throug the link [products](thttp://localhost:4200/products)
+
+It creats a service for products order and show it throug the link [cart](thttp://localhost:4200/cart)
+
+In the cart page the user still able to modify the order which is done through the cart servive
+
+The confirmatin form is created using angular formconatrol, validation are applied to the form
+which finally send the user to the confirmation page under [con](thttp://localhost:4200/cart/confirm)
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.1.
 
 ## Development server
 
