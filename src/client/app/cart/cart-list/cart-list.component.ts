@@ -26,7 +26,8 @@ export class CartListComponent implements OnInit {
 
   orderDetails!: FormGroup;
 
-  contact: Contact = {fullName: '', address: '', creditCard: 0};
+  contact: Contact = {} as Contact
+  // {fullName: '', address: '', creditCard: ''};
 
   breakpoint!: number;
   
@@ -44,8 +45,18 @@ export class CartListComponent implements OnInit {
 
     if(this.order.length !== 0 ) {
       this.orderDetails = this.fb.group({
-        fullName:   [this.contact.fullName,   Validators.required],
-        address:    [this.contact.address,    Validators.required],
+        fullName:   [this.contact.fullName,   Validators.compose
+                      ([
+                        Validators.required,
+                        Validators.minLength(5),
+                        Validators.maxLength(50),
+                      ])],
+        address:    [this.contact.address,    Validators.compose
+                      ([
+                        Validators.required,
+                        Validators.minLength(20),
+                        Validators.maxLength(70),
+                      ])],
         creditCard: [this.contact.creditCard, Validators.compose
                       ([
                         Validators.required,
@@ -57,13 +68,20 @@ export class CartListComponent implements OnInit {
     }
   }
 
+  modifyProduct() {
+    this.totalPrice = this.Cart.getTotalPrice();
+    this.totalItems = this.Cart.getTotalitems();
+  }
+
   removeProduct(P: Product) {
     this.order = this.order.filter((item) => item.P.name !== P.name);
     this.totalPrice = this.Cart.getTotalPrice();
+    this.totalItems = this.Cart.getTotalitems();
   }
 
   onSubmit() {
     const formValues = Object.assign({}, this.orderDetails.value);
+    this.Cart.reset();
     this.router.navigateByUrl('cart/confirm', {state: {fullName:formValues.fullName, price:this.Cart.getTotalPrice()}});
   }
 

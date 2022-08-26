@@ -59,4 +59,8 @@ export class CartService {
     return result;
   }
 
+  reset() {
+    this.cart = [];
+  }
+
 }

@@ -1,9 +1,9 @@
 <section>
   <button color="primary" mat-raised-button routerLink="/products">Products</button>
 </section>
-<!-- <mat-divider></mat-divider>
+<mat-divider></mat-divider>
   <p *ngIf="order.length !== 0">You have ordered {{totalItems}} item with a total of {{totalPrice}}$</p>
-<mat-divider></mat-divider> -->
+<mat-divider></mat-divider>
 <div *ngIf="order.length === 0">
   <p>Cart is Empty</p>
 </div>
@@ -20,7 +20,7 @@
 <div *ngIf="order.length !== 0">
   <mat-grid-list [cols]="breakpoint" rowHeight="1:2" (window:resize)="onResize($event)">
     <mat-grid-tile *ngFor="let item of order">
-      <app-cart-product [product]="item.P" [orderedQuantity]="item.Q" (removeProductEvent)="removeProduct($event)"></app-cart-product>
+      <app-cart-product [product]="item.P" [orderedQuantity]="item.Q" (modifyProductEvent)="modifyProduct()" (removeProductEvent)="removeProduct($event)"></app-cart-product>
     </mat-grid-tile>
   </mat-grid-list>
 
@@ -31,6 +31,8 @@
         <mat-form-field>
           <input matInput #fullName placeholder="Full Name" type="text" formControlName="fullName">
             <mat-error *ngIf="orderDetails.controls['fullName'].errors?.['required']">Enter your full name</mat-error>
+            <mat-error *ngIf="orderDetails.controls['fullName'].errors?.['minlength']">Less than 5 characters</mat-error>
+            <mat-error *ngIf="orderDetails.controls['fullName'].errors?.['maxlength']">More than 50 characters</mat-error>
         </mat-form-field>
       </mat-grid-tile>  
         
@@ -38,13 +40,15 @@
           <mat-form-field>
             <input matInput #address placeholder="Address" type="text" formControlName="address">
             <mat-error *ngIf="orderDetails.controls['address'].errors?.['required']">Enter your address</mat-error>
+            <mat-error *ngIf="orderDetails.controls['address'].errors?.['minlength']">Less than 20 characters</mat-error>
+            <mat-error *ngIf="orderDetails.controls['address'].errors?.['maxlength']">More than 70 characters</mat-error>
         </mat-form-field>
       </mat-grid-tile>
       
       <mat-grid-tile>
         <mat-form-field>
           <mat-label>Credit Card</mat-label>
-          <input matInput #creditCard formControlName="creditCard" placeholder="creditCard" required>
+          <input matInput #creditCard formControlName="creditCard" placeholder="14 digits" required>
           <mat-icon matSuffix><i class="fa fa-credit-card" aria-hidden="true"></i></mat-icon>
           <mat-error *ngIf="orderDetails.controls['creditCard'].errors?.['required']">Enter your credit card number!</mat-error>
           <mat-error *ngIf="orderDetails.controls['creditCard'].errors?.['maxlength']">not more than 14 digits</mat-error>

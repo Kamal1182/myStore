@@ -15,6 +15,8 @@ export class CartProductComponent implements OnInit {
   @Input() orderedQuantity!: number;
 
   @Output() removeProductEvent = new EventEmitter<Product>();
+  
+  @Output() modifyProductEvent = new EventEmitter<Product>();
 
   @HostBinding('class') columnClass = 'four wide column';
 
@@ -28,8 +30,9 @@ export class CartProductComponent implements OnInit {
     this.selectedQ = this.orderedQuantity;
   }
 
-  addProductToCart(selectedQ: number) {
+  modifyProductInCart(selectedQ: number) {
     this.Cart.addProduct(this.product, selectedQ);
+    this.modifyProductEvent.emit();
   }
 
   removeProductFromCart(P: Product) {
