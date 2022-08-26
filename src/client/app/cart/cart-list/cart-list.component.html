@@ -31,6 +31,7 @@
         <mat-form-field>
           <input matInput #fullName placeholder="Full Name" type="text" formControlName="fullName">
             <mat-error *ngIf="orderDetails.controls['fullName'].errors?.['required']">Enter your full name</mat-error>
+            <mat-error *ngIf="orderDetails.controls['fullName'].errors?.['pattern']">only characters</mat-error>
             <mat-error *ngIf="orderDetails.controls['fullName'].errors?.['minlength']">Less than 5 characters</mat-error>
             <mat-error *ngIf="orderDetails.controls['fullName'].errors?.['maxlength']">More than 50 characters</mat-error>
         </mat-form-field>
@@ -40,6 +41,7 @@
           <mat-form-field>
             <input matInput #address placeholder="Address" type="text" formControlName="address">
             <mat-error *ngIf="orderDetails.controls['address'].errors?.['required']">Enter your address</mat-error>
+            <mat-error *ngIf="orderDetails.controls['address'].errors?.['pattern']">only characters</mat-error>
             <mat-error *ngIf="orderDetails.controls['address'].errors?.['minlength']">Less than 20 characters</mat-error>
             <mat-error *ngIf="orderDetails.controls['address'].errors?.['maxlength']">More than 70 characters</mat-error>
         </mat-form-field>
@@ -51,6 +53,7 @@
           <input matInput #creditCard formControlName="creditCard" placeholder="14 digits" required>
           <mat-icon matSuffix><i class="fa fa-credit-card" aria-hidden="true"></i></mat-icon>
           <mat-error *ngIf="orderDetails.controls['creditCard'].errors?.['required']">Enter your credit card number!</mat-error>
+          <mat-error *ngIf="orderDetails.controls['creditCard'].errors?.['pattern']">only numbers</mat-error>
           <mat-error *ngIf="orderDetails.controls['creditCard'].errors?.['maxlength']">not more than 14 digits</mat-error>
           <mat-error *ngIf="orderDetails.controls['creditCard'].errors?.['minlength']">Not less than 14 digits</mat-error>
         </mat-form-field>

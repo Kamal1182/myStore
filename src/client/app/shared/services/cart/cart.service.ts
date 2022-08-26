@@ -40,6 +40,7 @@ export class CartService {
   }
 
   remove(P: Product): void {
+    alert(`${P.name} removed from the cart`)
     this.cart = this.cart.filter((item) => item.P.name !== P.name)
   }
 

@@ -48,18 +48,21 @@ export class CartListComponent implements OnInit {
         fullName:   [this.contact.fullName,   Validators.compose
                       ([
                         Validators.required,
+                        Validators.pattern('^[a-zA-Z ]*$'),
                         Validators.minLength(5),
                         Validators.maxLength(50),
                       ])],
         address:    [this.contact.address,    Validators.compose
                       ([
                         Validators.required,
+                        Validators.pattern('^[a-zA-Z ]*$'),
                         Validators.minLength(20),
                         Validators.maxLength(70),
                       ])],
         creditCard: [this.contact.creditCard, Validators.compose
                       ([
                         Validators.required,
+                        Validators.pattern('^[0-9]*$'),
                         Validators.maxLength(14),
                         Validators.minLength(14),
                       ])
