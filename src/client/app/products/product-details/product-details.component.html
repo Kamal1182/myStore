@@ -1,16 +1,22 @@
-<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar [ngStyle]="{ 'background-image': 'url(' + product.url + ')', 'background-size': 'cover', 'display':'inline-block' }"></div>
-    <mat-card-title>
-      <a class="header">{{product.name}}</a>
-    </mat-card-title>
-    <mat-card-title>{{product.price}} $ </mat-card-title>
-  </mat-card-header>
-  <img mat-card-image [src]="product.url">
-  <mat-card-content>
-    <p>
-      {{product.description}}
-    </p>
-  </mat-card-content>
-  <button color="primary" mat-raised-button routerLink="/products">Back to Products</button>
-</mat-card>
+<div class="content">
+  <div fxLayout="raw wrap" fxLayoutGap="16px grid">
+    <div fxFlex="100%" fxLayoutAlign="center center">
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar [ngStyle]="{ 'background-image': 'url(' + product.url + ')', 'background-size': 'cover', 'display':'inline-block' }"></div>
+          <mat-card-title>
+            <a class="header">{{product.name}}</a>
+          </mat-card-title>
+          <mat-card-title>{{product.price}} $ </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="product.url">
+        <mat-card-content>
+          <p>
+            {{product.description}}
+          </p>
+        </mat-card-content>
+        <button color="primary" mat-raised-button routerLink="/products">Back to Products</button>
+      </mat-card>
+    </div>
+  </div>
+</div>

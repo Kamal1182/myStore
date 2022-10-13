@@ -16,13 +16,15 @@
   </div>
 </div>
 
+<div class="content" *ngIf="order.length !== 0">
+  <div fxLayout="raw wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" *ngFor="let item of order">
+      <app-cart-product [product]="item.P" [orderedQuantity]="item.Q" (modifyProductEvent)="modifyProduct()" (removeProductEvent)="removeProduct($event)"></app-cart-product>
+    </div>
+  </div>
+</div>
 
 <div *ngIf="order.length !== 0">
-  <mat-grid-list [cols]="breakpoint" rowHeight="1:2" (window:resize)="onResize($event)">
-    <mat-grid-tile *ngFor="let item of order">
-      <app-cart-product [product]="item.P" [orderedQuantity]="item.Q" (modifyProductEvent)="modifyProduct()" (removeProductEvent)="removeProduct($event)"></app-cart-product>
-    </mat-grid-tile>
-  </mat-grid-list>
 
   <form [formGroup]="orderDetails" (ngSubmit)="onSubmit()">
     <mat-grid-list #gridList [cols]="breakpoint" rowHeight="85px" (window:resize)="onResize($event)">

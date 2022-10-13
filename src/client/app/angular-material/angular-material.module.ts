@@ -36,6 +36,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const materialModules = [
   MatButtonModule,
@@ -72,7 +73,8 @@ const materialModules = [
   MatTooltipModule,
   MatDialogModule,
   MaterialFileInputModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  FlexLayoutModule
 ]
 
 @NgModule({

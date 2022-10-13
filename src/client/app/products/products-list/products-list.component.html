@@ -10,8 +10,10 @@
   </div>
 </div>
 
-<mat-grid-list [cols]="breakpoint" rowHeight="1:2" (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let product of products  | searchProduct: seachTerm">
-    <app-product [product]="product"></app-product>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="content">
+  <div fxLayout="raw wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" *ngFor="let product of products  | searchProduct: seachTerm">
+      <app-product [product]="product"></app-product>
+    </div>
+  </div>
+</div>

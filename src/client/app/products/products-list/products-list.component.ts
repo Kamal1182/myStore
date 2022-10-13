@@ -39,7 +39,7 @@ export class ProductsListComponent implements OnInit {
     } else if (window.innerWidth <= 907) {
       this.breakpoint = 2;
     } else {
-      this.breakpoint = 3;
+      this.breakpoint = 5;
     }
   }
 

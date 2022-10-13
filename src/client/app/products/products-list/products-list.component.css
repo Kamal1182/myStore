@@ -3,3 +3,7 @@ mat-form-field {
   display: flex;
   justify-content: center;
 }
+
+.content {
+  padding: 16px;
+}
